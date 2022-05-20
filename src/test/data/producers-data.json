@@ -1,0 +1,60 @@
+[
+    {
+        "document": "12789990786",
+        "name": "Rafael Mathias",
+        "farmName": "Fazenda Mathias",
+        "city": "Indaiatuba",
+        "state": "SP",
+        "hectares": 20,
+        "farmableArea": 5,
+        "vegetationArea": 8,
+        "plantedCrops": [
+            "1",
+            "2"
+        ]
+    },
+    {
+        "document": "2",
+        "name": "Rafael Mathias",
+        "farmName": "Fazenda Mathias",
+        "city": "Indaiatuba",
+        "state": "SP",
+        "hectares": 20,
+        "farmableArea": 5,
+        "vegetationArea": 8,
+        "plantedCrops": [
+            "1"
+        ]
+    },
+    {
+        "document": "3",
+        "name": "Rafael Mathias",
+        "farmName": "Fazenda Mathias",
+        "city": "Indaiatuba",
+        "state": "RJ",
+        "hectares": 20,
+        "farmableArea": 5,
+        "vegetationArea": 8,
+        "plantedCrops": [
+            "1",
+            "2",
+            "3"
+        ]
+    },
+    {
+        "document": "4",
+        "name": "Rafael Mathias",
+        "farmName": "Fazenda Mathias",
+        "city": "Indaiatuba",
+        "state": "MG",
+        "hectares": 20,
+        "farmableArea": 5,
+        "vegetationArea": 10,
+        "plantedCrops": [
+            "4",
+            "1",
+            "2",
+            "3"
+        ]
+    }
+]
