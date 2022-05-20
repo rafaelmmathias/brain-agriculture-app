@@ -12,7 +12,7 @@ interface ProducerListActionsProps {
 export const ProducerListActions: React.FC<ProducerListActionsProps> = ({
   producer,
 }) => {
-  const [deleteProducer] = useDeleteProducerMutation();
+  const [deleteProducer, { isLoading }] = useDeleteProducerMutation();
   const navigate = useNavigate();
 
   const onEditHandler = () => {
@@ -36,6 +36,9 @@ export const ProducerListActions: React.FC<ProducerListActionsProps> = ({
           okText="Sim"
           cancelText="Não"
           onConfirm={() => deleteProducer(producer.document)}
+          okButtonProps={{
+            loading: isLoading,
+          }}
         >
           <Button type="primary" danger>
             <DeleteRowOutlined /> Delete

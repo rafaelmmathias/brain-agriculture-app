@@ -6,6 +6,7 @@ import {
 import { rest } from "msw";
 import { db, getProducerByDocument } from "../data/db";
 import { groupBy } from "lodash";
+import { delayedResponse } from "../utils";
 const apiEndpoint = process.env.REACT_APP_API_ENDPOINT;
 
 const handlers = [
@@ -49,7 +50,7 @@ const handlers = [
       },
     });
 
-    return res(ctx.json(db.producer.getAll()));
+    return delayedResponse(ctx.json(db.producer.getAll()));
   }),
 
   rest.get(`${apiEndpoint}/dashboard`, async (req, res, ctx) => {

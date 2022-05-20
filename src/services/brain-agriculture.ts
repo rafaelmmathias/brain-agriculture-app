@@ -37,7 +37,7 @@ export const brainAgricultureApi = createApi({
         url: `/producers/${document}`,
         method: "DELETE",
       }),
-      invalidatesTags: ["Dashboard"],
+      invalidatesTags: ["Producer", "Dashboard"],
     }),
   }),
 });
