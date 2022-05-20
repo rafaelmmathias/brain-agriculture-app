@@ -47,7 +47,9 @@ export const useProducersListColumns = () => {
         return (
           <>
             {producer.plantedCrops.map((crop) => (
-              <Tag>{crop.name}</Tag>
+              <Tag key={`crop-row-${producer.document}${crop.id}`}>
+                {crop.name}
+              </Tag>
             ))}
           </>
         );

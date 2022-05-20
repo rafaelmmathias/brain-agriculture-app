@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import { AppLayout } from "../../../layout";
-import { ProducerList } from "../components";
+import { ProducerList, ProducerCreate, ProducerEdit } from "../components";
 
 export const ProducerRoutes = () => {
   return (
@@ -10,6 +10,22 @@ export const ProducerRoutes = () => {
         element={
           <AppLayout>
             <ProducerList />
+          </AppLayout>
+        }
+      />
+      <Route
+        path="/create"
+        element={
+          <AppLayout>
+            <ProducerCreate />
+          </AppLayout>
+        }
+      />
+      <Route
+        path="/edit/:document"
+        element={
+          <AppLayout>
+            <ProducerEdit />
           </AppLayout>
         }
       />

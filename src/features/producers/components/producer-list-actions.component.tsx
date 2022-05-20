@@ -16,7 +16,7 @@ export const ProducerListActions: React.FC<ProducerListActionsProps> = ({
   const navigate = useNavigate();
 
   const onEditHandler = () => {
-    navigate("edit", {
+    navigate(`edit/${producer.document}`, {
       state: {
         producer: producer,
       },

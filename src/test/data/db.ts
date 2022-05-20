@@ -40,7 +40,7 @@ export const getManyCropsById = (ids: string[]) => {
   return db.crops.findMany({
     where: {
       id: {
-        in: ids,
+        in: ids.map((crop: any) => crop.id || crop.value || crop),
       },
     },
   });
@@ -65,9 +65,7 @@ export const updateProducerByDocument = (document: string, data: any) => {
     },
     data: {
       ...data,
-      plantedCrops: getManyCropsById(
-        data.plantedCrops.map(({ id }: { id: string }) => id)
-      ),
+      plantedCrops: getManyCropsById(data.plantedCrops),
     },
   });
 };

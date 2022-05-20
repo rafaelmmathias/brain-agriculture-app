@@ -24,8 +24,9 @@ export const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
     ],
     []
   );
+
   const selectedMenuItems = menu
-    .filter((item) => item.key.includes(location.pathname))
+    .filter((item) => location.pathname.includes(item.key))
     .map((item) => item.key);
 
   return (

@@ -14,12 +14,17 @@ const handlers = [
     const producers = db.producer.getAll();
     return res(ctx.json(producers));
   }),
+  rest.get(`${apiEndpoint}/producers/:document`, async (req, res, ctx) => {
+    const producer = getProducerByDocument(req.params.document as string);
+    return delayedResponse(ctx.json(producer));
+  }),
 
   rest.put(`${apiEndpoint}/producers/:document`, async (req, res, ctx) => {
     const document = req.params.document as string;
     const producer = getProducerByDocument(document);
     if (producer) {
       const updatedProducer = req.body;
+
       updateProducerByDocument(document, updatedProducer);
 
       return res(ctx.json(db.producer.getAll()));
@@ -33,9 +38,7 @@ const handlers = [
 
     db.producer.create({
       ...data,
-      plantedCrops: getManyCropsById(
-        data.plantedCrops.map(({ id }: { id: string }) => id)
-      ),
+      plantedCrops: getManyCropsById(data.plantedCrops),
     });
 
     return res(ctx.json(db.producer.getAll()));
@@ -81,6 +84,11 @@ const handlers = [
         soilTypes,
       })
     );
+  }),
+
+  rest.get(`${apiEndpoint}/crops`, async (req, res, ctx) => {
+    const crops = db.crops.getAll();
+    return delayedResponse(ctx.json(crops));
   }),
 ];
 
