@@ -14,20 +14,19 @@ export const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
   const menu = useMemo(
     () => [
       {
-        path: "/",
-        key: "menu-dashboard",
+        key: "/dashboard",
         label: "Dashboard",
+      },
+      {
+        key: "/producers",
+        label: "Produtores",
       },
     ],
     []
   );
   const selectedMenuItems = menu
-    .filter((item) => item.path === location.pathname)
+    .filter((item) => item.key.includes(location.pathname))
     .map((item) => item.key);
-
-  const goToDashboard = () => {
-    navigate("/");
-  };
 
   return (
     <Layout style={{ minHeight: "100vh" }}>
@@ -39,7 +38,7 @@ export const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
               mode="horizontal"
               selectedKeys={selectedMenuItems}
               items={menu}
-              onClick={goToDashboard}
+              onClick={(menuInfo) => navigate(menuInfo.key)}
             />
           </Col>
         </Row>

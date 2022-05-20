@@ -12,6 +12,10 @@ export const brainAgricultureApi = createApi({
       query: () => "/dashboard",
       providesTags: ["Dashboard"],
     }),
+    getProducers: builder.query<Producer[], void>({
+      query: () => "/producers",
+      providesTags: ["Producer"],
+    }),
     addProducer: builder.mutation<void, Producer>({
       query: (producer) => ({
         url: "/producers",
@@ -40,6 +44,7 @@ export const brainAgricultureApi = createApi({
 
 export const {
   useGetDashboardQuery,
+  useGetProducersQuery,
   useAddProducerMutation,
   useUpdateProducerMutation,
   useDeleteProducerMutation,
