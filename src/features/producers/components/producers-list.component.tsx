@@ -36,6 +36,9 @@ export const ProducerList = () => {
             dataSource={data}
             columns={columns}
             rowKey={(producer) => producer.document}
+            locale={{
+              emptyText: "Nenhum produtor cadastrado"
+            }}
           />
         )}
       </Spin>
