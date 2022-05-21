@@ -13,3 +13,11 @@ yarn install
 
 yarn start
 ```
+
+# Unit tests
+
+### `yarn tdd`
+Runs tests in watch mode for development time
+
+### `yarn test`
+Runs tests withou watch (for CI)
