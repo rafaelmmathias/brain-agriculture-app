@@ -79,15 +79,14 @@ export const getPlantedCrops = () => {
       if (!groupedCrops.has(crop.id)) {
         groupedCrops.set(crop.id, {
           ...crop,
-          producers: [value],
+          count: 1,
         });
       } else {
         const values = groupedCrops.get(crop.id);
-        values.producers.push(value);
 
         groupedCrops.set(crop.id, {
           ...crop,
-          producers: values.producers,
+          count: values.count + 1,
         });
       }
     });

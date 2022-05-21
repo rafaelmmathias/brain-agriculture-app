@@ -22,11 +22,10 @@ export const ProducerList = () => {
                 navigate("create");
               }}
             >
-              Create
+              Cadastrar
             </Button>
             <Button type="primary" onClick={refetch}>
               <SyncOutlined spin={isFetching} disabled={isFetching} />
-              Refresh
             </Button>
           </Space>
         </Row>

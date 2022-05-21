@@ -62,8 +62,11 @@ const handlers = [
     const hectares = allFarms.reduce((acc, curr) => {
       return acc + curr.hectares;
     }, 0);
-
-    const groupedStates = groupBy(allFarms, "state");
+    const states = groupBy(allFarms, "state");
+    const groupedStates = Object.entries(states).map(([key, values]) => ({
+      state: key,
+      count: values.length,
+    }));
     const groupedCrops = getPlantedCrops();
 
     const soilTypes = allFarms.reduce(

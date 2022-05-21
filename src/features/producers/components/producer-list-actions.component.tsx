@@ -28,7 +28,6 @@ export const ProducerListActions: React.FC<ProducerListActionsProps> = ({
       <Space>
         <Button type="primary" onClick={onEditHandler}>
           <EditOutlined />
-          Edit
         </Button>
 
         <Popconfirm
@@ -41,7 +40,7 @@ export const ProducerListActions: React.FC<ProducerListActionsProps> = ({
           }}
         >
           <Button type="primary" danger>
-            <DeleteRowOutlined /> Delete
+            <DeleteRowOutlined />
           </Button>
         </Popconfirm>
       </Space>

@@ -1,4 +1,4 @@
-import { Button, Form, Input, Row, Select } from "antd";
+import { Button, Form, Input, InputNumber, Row, Select } from "antd";
 import { Producer } from "../../../../models/producer";
 import { useGetCropsQuery } from "../../../../services/brain-agriculture";
 
@@ -39,13 +39,13 @@ export const ProducerForm: React.FC<ProducerFormProps> = ({
           <Input />
         </Form.Item>
         <Form.Item name="hectares" label="Hectares">
-          <Input />
+          <InputNumber />
         </Form.Item>
         <Form.Item name="farmableArea" label="Área agricultável">
-          <Input />
+          <InputNumber />
         </Form.Item>
         <Form.Item name="vegetationArea" label="Área de vegetação">
-          <Input />
+          <InputNumber />
         </Form.Item>
         <Form.Item
           name="plantedCrops"
