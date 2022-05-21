@@ -1,8 +1,4 @@
-import {
-  BorderlessTableOutlined,
-  RadiusUpleftOutlined,
-  SyncOutlined,
-} from "@ant-design/icons";
+import { SyncOutlined } from "@ant-design/icons";
 import { Button, Card, Col, Divider, Row, Space, Spin, Statistic } from "antd";
 import { useGetDashboardQuery } from "../../../services/brain-agriculture";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
