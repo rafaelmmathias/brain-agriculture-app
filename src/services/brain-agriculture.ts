@@ -17,7 +17,7 @@ export const brainAgricultureApi = createApi({
       providesTags: ["Producer"],
     }),
     getProducer: builder.query<void, string>({
-      query: (document) => `/producers/${document}`,
+      query: (id) => `/producers/${id}`,
       providesTags: ["Producer"],
     }),
     addProducer: builder.mutation<void, Producer>({
@@ -29,16 +29,16 @@ export const brainAgricultureApi = createApi({
       invalidatesTags: ["Dashboard", "Producer"],
     }),
     updateProducer: builder.mutation<void, Producer>({
-      query: ({ document, ...rest }) => ({
-        url: `/producers/${document}`,
+      query: ({ id, ...rest }) => ({
+        url: `/producers/${id}`,
         method: "PUT",
         body: rest,
       }),
       invalidatesTags: ["Dashboard", "Producer"],
     }),
     deleteProducer: builder.mutation<void, string>({
-      query: (document) => ({
-        url: `/producers/${document}`,
+      query: (id) => ({
+        url: `/producers/${id}`,
         method: "DELETE",
       }),
       invalidatesTags: ["Producer", "Dashboard"],

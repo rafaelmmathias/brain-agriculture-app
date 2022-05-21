@@ -16,7 +16,7 @@ export const ProducerListActions: React.FC<ProducerListActionsProps> = ({
   const navigate = useNavigate();
 
   const onEditHandler = () => {
-    navigate(`edit/${producer.document}`, {
+    navigate(`edit/${producer.id}`, {
       state: {
         producer: producer,
       },
@@ -34,7 +34,7 @@ export const ProducerListActions: React.FC<ProducerListActionsProps> = ({
           title="Tem certeza que deseja deletar este produtor?"
           okText="Sim"
           cancelText="Não"
-          onConfirm={() => deleteProducer(producer.document)}
+          onConfirm={() => deleteProducer(producer.id)}
           okButtonProps={{
             loading: isLoading,
           }}

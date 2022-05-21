@@ -22,7 +22,7 @@ export const ProducerRoutes = () => {
         }
       />
       <Route
-        path="/edit/:document"
+        path="/edit/:id"
         element={
           <AppLayout>
             <ProducerEdit />

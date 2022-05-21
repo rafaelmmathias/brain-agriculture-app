@@ -4,7 +4,8 @@ import crops from "./crops-data.json";
 
 const models = {
   producer: {
-    document: primaryKey(String),
+    id: primaryKey(String),
+    document: String,
     name: String,
     farmName: String,
     city: String,
@@ -46,21 +47,21 @@ export const getManyCropsById = (ids: string[]) => {
   });
 };
 
-export const getProducerByDocument = (document: string) => {
+export const getProducerById = (id: string) => {
   return db.producer.findFirst({
     where: {
-      document: {
-        equals: document,
+      id: {
+        equals: id,
       },
     },
   });
 };
 
-export const updateProducerByDocument = (document: string, data: any) => {
+export const updateProducerById = (id: string, data: any) => {
   return db.producer.update({
     where: {
-      document: {
-        equals: document,
+      id: {
+        equals: id,
       },
     },
     data: {

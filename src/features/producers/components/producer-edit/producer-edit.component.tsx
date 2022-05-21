@@ -10,7 +10,7 @@ import { ProducerForm } from "../producer-form";
 export const ProducerEdit = () => {
   const params = useParams();
   const navigate = useNavigate();
-  const { isLoading, data } = useGetProducerQuery(params.document || "");
+  const { isLoading, data } = useGetProducerQuery(params.id || "");
   const [updateProducer, { isLoading: loadingUpdate, isSuccess, error }] =
     useUpdateProducerMutation();
 

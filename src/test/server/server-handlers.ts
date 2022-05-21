@@ -1,12 +1,14 @@
 import {
   getManyCropsById,
   getPlantedCrops,
-  updateProducerByDocument,
+  updateProducerById,
 } from "./../data/db";
 import { rest } from "msw";
-import { db, getProducerByDocument } from "../data/db";
+import { db, getProducerById } from "../data/db";
 import { groupBy } from "lodash";
 import { delayedResponse } from "../utils";
+import { v4 as uuidv4 } from 'uuid';
+
 const apiEndpoint = process.env.REACT_APP_API_ENDPOINT;
 
 const handlers = [
@@ -14,18 +16,18 @@ const handlers = [
     const producers = db.producer.getAll();
     return res(ctx.json(producers));
   }),
-  rest.get(`${apiEndpoint}/producers/:document`, async (req, res, ctx) => {
-    const producer = getProducerByDocument(req.params.document as string);
+  rest.get(`${apiEndpoint}/producers/:id`, async (req, res, ctx) => {
+    const producer = getProducerById(req.params.id as string);
     return delayedResponse(ctx.json(producer));
   }),
 
-  rest.put(`${apiEndpoint}/producers/:document`, async (req, res, ctx) => {
-    const document = req.params.document as string;
-    const producer = getProducerByDocument(document);
+  rest.put(`${apiEndpoint}/producers/:id`, async (req, res, ctx) => {
+    const id = req.params.id as string;
+    const producer = getProducerById(id);
     if (producer) {
       const updatedProducer = req.body;
 
-      updateProducerByDocument(document, updatedProducer);
+      updateProducerById(id, updatedProducer);
 
       return res(ctx.json(db.producer.getAll()));
     }
@@ -37,6 +39,7 @@ const handlers = [
     const data = req.body as any;
 
     db.producer.create({
+      id: uuidv4(),
       ...data,
       plantedCrops: getManyCropsById(data.plantedCrops),
     });
@@ -44,11 +47,11 @@ const handlers = [
     return res(ctx.json(db.producer.getAll()));
   }),
 
-  rest.delete(`${apiEndpoint}/producers/:document`, async (req, res, ctx) => {
+  rest.delete(`${apiEndpoint}/producers/:id`, async (req, res, ctx) => {
     db.producer.delete({
       where: {
-        document: {
-          equals: req.params.document as string,
+        id: {
+          equals: req.params.id as string,
         },
       },
     });

@@ -4,6 +4,7 @@ export type Crops = {
 };
 
 export type Producer = {
+  id: string;
   document: string;
   name: string;
   farmName: string;
