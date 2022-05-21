@@ -34,12 +34,16 @@ export const ProducerListActions: React.FC<ProducerListActionsProps> = ({
           title="Tem certeza que deseja deletar este produtor?"
           okText="Sim"
           cancelText="Não"
+          placement="left"
           onConfirm={() => deleteProducer(producer.id)}
+          data-testid="testing-id"
           okButtonProps={{
             loading: isLoading,
+            // @ts-ignore: ignoring this line because this antd component doesn't have support for this prop
+            "data-testid": `delete-${producer.id}`,
           }}
         >
-          <Button type="primary" danger>
+          <Button data-testid="delete-button" type="primary" danger>
             <DeleteRowOutlined />
           </Button>
         </Popconfirm>

@@ -119,5 +119,15 @@ export const initializeDb = () => {
     db.producer.create({ ...producer, plantedCrops: crops });
   });
 };
-
+export const clearDb = () => {
+  Object.entries(db).forEach(([key, model]) => {
+    model.deleteMany({
+      where: {
+        id: {
+          notIn: ["X"],
+        },
+      },
+    });
+  });
+};
 initializeDb();

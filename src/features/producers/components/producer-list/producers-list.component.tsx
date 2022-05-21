@@ -24,7 +24,7 @@ export const ProducerList = () => {
             >
               Cadastrar
             </Button>
-            <Button type="primary" onClick={refetch}>
+            <Button data-testid="refresh-producer-list" type="primary" onClick={refetch}>
               <SyncOutlined spin={isFetching} disabled={isFetching} />
             </Button>
           </Space>

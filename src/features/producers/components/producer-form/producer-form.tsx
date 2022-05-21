@@ -50,6 +50,7 @@ export const ProducerForm: React.FC<ProducerFormProps> = ({
                   rules={ProducerFormRules.document}
                 >
                   <InputMask
+                    data-testid="document-input"
                     mask={[
                       {
                         mask: "000.000.000-00",
@@ -65,7 +66,7 @@ export const ProducerForm: React.FC<ProducerFormProps> = ({
                         ).replace(/\D/g, "");
 
                         const maskIndex = rawValue.length > 11 ? 1 : 0;
-                        
+
                         return dynamicMasked.compiledMasks[maskIndex];
                       },
                     }}
@@ -79,7 +80,7 @@ export const ProducerForm: React.FC<ProducerFormProps> = ({
                   label="Nome do produtor"
                   rules={ProducerFormRules.name}
                 >
-                  <Input />
+                  <Input data-testid="producer-name-input" />
                 </Form.Item>
               </Col>
               <Col>
@@ -88,7 +89,7 @@ export const ProducerForm: React.FC<ProducerFormProps> = ({
                   label="Nome da fazenda"
                   rules={ProducerFormRules.farmName}
                 >
-                  <Input />
+                  <Input data-testid="farm-name-input" />
                 </Form.Item>
               </Col>
             </Row>
@@ -102,7 +103,7 @@ export const ProducerForm: React.FC<ProducerFormProps> = ({
                   label="Cidade"
                   rules={ProducerFormRules.city}
                 >
-                  <Input />
+                  <Input data-testid="city-input" />
                 </Form.Item>
               </Col>
               <Col>
@@ -111,7 +112,7 @@ export const ProducerForm: React.FC<ProducerFormProps> = ({
                   label="Estado"
                   rules={ProducerFormRules.state}
                 >
-                  <SelectState />
+                  <SelectState data-testid="state-input" />
                 </Form.Item>
               </Col>
             </Row>
@@ -126,7 +127,7 @@ export const ProducerForm: React.FC<ProducerFormProps> = ({
                   dependencies={["farmableArea", "vegetationArea"]}
                   rules={ProducerFormRules.hectares}
                 >
-                  <InputNumber min={0} />
+                  <InputNumber min={0} data-testid="total-size-input" />
                 </Form.Item>
               </Col>
             </Row>
@@ -137,7 +138,7 @@ export const ProducerForm: React.FC<ProducerFormProps> = ({
                   label="Área agricultável (Hectares)"
                   rules={ProducerFormRules.farmableArea}
                 >
-                  <InputNumber min={0} />
+                  <InputNumber min={0} data-testid="farmable-input" />
                 </Form.Item>
               </Col>
 
@@ -147,41 +148,46 @@ export const ProducerForm: React.FC<ProducerFormProps> = ({
                   label="Área de vegetação (Hectares)"
                   rules={ProducerFormRules.vegetationArea}
                 >
-                  <InputNumber min={0} />
+                  <InputNumber min={0} data-testid="vegetation-input" />
                 </Form.Item>
               </Col>
             </Row>
-            
-              <Form.Item
-                name="plantedCrops"
-                valuePropName="id"
-                label="Culturas plantadas"
-                rules={[
-                  {
-                    required: true,
-                    message: "Selecione pelo menos uma cultura",
-                  },
-                ]}
-              >
-                <Select
-                  placement="topLeft"
-                  mode="multiple"
-                  loading={isLoading}
-                  defaultValue={initialValues?.plantedCrops.map(
-                    (crop) => crop.id
-                  )}
-                  fieldNames={{
-                    label: "name",
-                    value: "id",
-                  }}
-                  labelInValue
-                  options={crops}
-                  style={{ width: "100%" }}
-                />
-              </Form.Item>
-            
+
+            <Form.Item
+              name="plantedCrops"
+              valuePropName="id"
+              label="Culturas plantadas"
+              rules={[
+                {
+                  required: true,
+                  message: "Selecione pelo menos uma cultura",
+                },
+              ]}
+            >
+              <Select
+                data-testid="planted-crops-input"
+                placement="topLeft"
+                mode="multiple"
+                loading={isLoading}
+                defaultValue={initialValues?.plantedCrops.map(
+                  (crop) => crop.id
+                )}
+                fieldNames={{
+                  label: "name",
+                  value: "id",
+                }}
+                labelInValue
+                options={crops}
+                style={{ width: "100%" }}
+              />
+            </Form.Item>
+
             <Row justify="end">
-              <Button type="primary" htmlType="submit">
+              <Button
+                data-testid="button-submit"
+                type="primary"
+                htmlType="submit"
+              >
                 Salvar
               </Button>
             </Row>
