@@ -26,7 +26,6 @@ export const ProducerCreate = () => {
       <Spin spinning={loadingCreation}>
         <ProducerForm
           onSubmit={(data) => {
-            console.log(data);
             addProducer(data);
           }}
         />
