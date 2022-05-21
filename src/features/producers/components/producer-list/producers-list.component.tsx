@@ -1,7 +1,7 @@
 import { SyncOutlined } from "@ant-design/icons";
 import { Button, Row, Space, Spin, Table, Typography } from "antd";
 import { useNavigate } from "react-router-dom";
-import { useGetProducersQuery } from "../../../services/brain-agriculture";
+import { useGetProducersQuery } from "../../../../services/brain-agriculture";
 import { useProducersListColumns } from "./use-producer-list-columns";
 const { Title } = Typography;
 

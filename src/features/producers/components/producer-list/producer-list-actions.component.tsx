@@ -3,8 +3,8 @@ import { Button, Popconfirm, Row, Space } from "antd";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-import { useDeleteProducerMutation } from "../../../services/brain-agriculture";
-import { Producer } from "../../../models/producer";
+import { useDeleteProducerMutation } from "../../../../services/brain-agriculture";
+import { Producer } from "../../../../models/producer";
 
 interface ProducerListActionsProps {
   producer: Producer;
