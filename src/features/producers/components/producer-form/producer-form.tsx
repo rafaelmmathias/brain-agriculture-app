@@ -13,6 +13,7 @@ import { SelectState } from "../../../../components";
 import { Producer } from "../../../../models/producer";
 import { useGetCropsQuery } from "../../../../services/brain-agriculture";
 import { ProducerFormRules } from "./producer-form.rules";
+import InputMask from "antd-mask-input";
 
 interface ProducerFormProps {
   initialValues?: Producer;
@@ -48,7 +49,28 @@ export const ProducerForm: React.FC<ProducerFormProps> = ({
                   label="Documento (CPF ou CNPJ)"
                   rules={ProducerFormRules.document}
                 >
-                  <Input />
+                  <InputMask
+                    mask={[
+                      {
+                        mask: "000.000.000-00",
+                      },
+                      {
+                        mask: "00.000.000/0000-00",
+                      },
+                    ]}
+                    maskOptions={{
+                      dispatch: (appended, dynamicMasked) => {
+                        const rawValue = (
+                          dynamicMasked.value + appended
+                        ).replace(/\D/g, "");
+
+                        const maskIndex = rawValue.length > 11 ? 1 : 0;
+                        
+                        return dynamicMasked.compiledMasks[maskIndex];
+                      },
+                    }}
+                    autoComplete="off"
+                  />
                 </Form.Item>
               </Col>
               <Col>
@@ -129,7 +151,7 @@ export const ProducerForm: React.FC<ProducerFormProps> = ({
                 </Form.Item>
               </Col>
             </Row>
-            <Row>
+            
               <Form.Item
                 name="plantedCrops"
                 valuePropName="id"
@@ -142,6 +164,7 @@ export const ProducerForm: React.FC<ProducerFormProps> = ({
                 ]}
               >
                 <Select
+                  placement="topLeft"
                   mode="multiple"
                   loading={isLoading}
                   defaultValue={initialValues?.plantedCrops.map(
@@ -156,7 +179,7 @@ export const ProducerForm: React.FC<ProducerFormProps> = ({
                   style={{ width: "100%" }}
                 />
               </Form.Item>
-            </Row>
+            
             <Row justify="end">
               <Button type="primary" htmlType="submit">
                 Salvar

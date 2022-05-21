@@ -1,4 +1,4 @@
-import { message, Spin } from "antd";
+import { Card, message, Spin } from "antd";
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import {
@@ -28,12 +28,14 @@ export const ProducerEdit = () => {
     <>
       <Spin spinning={isLoading || loadingUpdate}>
         {data ? (
-          <ProducerForm
-            initialValues={data}
-            onSubmit={(producer) => {
-              updateProducer(producer);
-            }}
-          />
+          <Card title="Editar produtor">
+            <ProducerForm
+              initialValues={data}
+              onSubmit={(producer) => {
+                updateProducer(producer);
+              }}
+            />
+          </Card>
         ) : null}
       </Spin>
     </>

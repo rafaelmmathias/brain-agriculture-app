@@ -22,17 +22,15 @@ export const ProducerCreate = () => {
   }, [isSuccess, navigate, error]);
 
   return (
-    <div>
-      <Card title="Cadastrar produtor">
-        <Spin spinning={loadingCreation}>
-          <ProducerForm
-            onSubmit={(data) => {
-              console.log(data);
-              addProducer(data);
-            }}
-          />
-        </Spin>
-      </Card>
-    </div>
+    <Card title="Cadastrar produtor">
+      <Spin spinning={loadingCreation}>
+        <ProducerForm
+          onSubmit={(data) => {
+            console.log(data);
+            addProducer(data);
+          }}
+        />
+      </Spin>
+    </Card>
   );
 };

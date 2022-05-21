@@ -1,4 +1,5 @@
 import { Rule } from "antd/lib/form";
+import { cpf, cnpj } from "cpf-cnpj-validator";
 
 type Rules = {
   [key: string]: Rule[];
@@ -26,7 +27,27 @@ export const ProducerFormRules = {
   document: [
     {
       required: true,
-      message: "Documento é obrigatório",
+      validateTrigger: "onBlur",
+      validator: (_, value) => {
+        const isCNPJ = value?.includes("/");
+        if (!value) return Promise.reject(new Error("Documento obrigatório"));
+
+        if (isCNPJ && !cnpj.isValid(value)) {
+          return Promise.reject(new Error("CNPJ inválido"));
+        }
+
+        if (isCNPJ && cnpj.isValid(value)) {
+          return Promise.resolve();
+        }
+
+        if (!cpf.isValid(value)) {
+          return Promise.reject(new Error("CPF inválido"));
+        }
+
+        if (cpf.isValid(value)) return Promise.resolve();
+        if (cnpj.isValid(value)) return Promise.resolve();
+        return Promise.reject(new Error("Documento inválido"));
+      },
     },
   ],
   name: [

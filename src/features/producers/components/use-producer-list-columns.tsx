@@ -9,10 +9,10 @@ export const useProducersListColumns = () => {
       title: "Documento",
       dataIndex: "document",
       key: "document",
-      width: 100,
+      width: 160,
     },
     {
-      title: "Nome",
+      title: "Nome do produtor",
       dataIndex: "name",
       key: "name",
       width: 150,

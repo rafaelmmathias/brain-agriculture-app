@@ -38,17 +38,9 @@ export const Dashboard = () => {
           <Row gutter={16} justify="center">
             <Card>
               <Row justify="space-between" align="middle">
-                <Space>
-                  <Statistic
-                    title="Total de fazendas"
-                    value={data.farms}
-                    prefix={<BorderlessTableOutlined />}
-                  />
-                  <Statistic
-                    title="Hectares"
-                    value={data.hectares}
-                    prefix={<RadiusUpleftOutlined />}
-                  />
+                <Space size={"large"}>
+                  <Statistic title="Total de fazendas" value={data.farms} />
+                  <Statistic title="Hectares" value={data.hectares} />
                 </Space>
                 <Button icon={<SyncOutlined />} onClick={refetch}></Button>
               </Row>
