@@ -14,6 +14,7 @@ import { Producer } from "../../../../models/producer";
 import { useGetCropsQuery } from "../../../../services/brain-agriculture";
 import { ProducerFormRules } from "./producer-form.rules";
 import InputMask from "antd-mask-input";
+import { useMemo } from "react";
 
 interface ProducerFormProps {
   initialValues?: Producer;
@@ -27,12 +28,21 @@ export const ProducerForm: React.FC<ProducerFormProps> = ({
 }) => {
   const { data: crops, isLoading } = useGetCropsQuery();
 
+  const transformedInitialValues = useMemo(
+    () =>
+      initialValues && {
+        ...initialValues,
+        plantedCrops: initialValues.plantedCrops.map((crop) => crop.id),
+      },
+    [initialValues]
+  );
+
   return (
     <Form.Provider>
       <Form
         name="basic"
         layout="vertical"
-        initialValues={initialValues}
+        initialValues={transformedInitialValues}
         onFinish={(data) => {
           onSubmit(data);
         }}
@@ -155,7 +165,6 @@ export const ProducerForm: React.FC<ProducerFormProps> = ({
 
             <Form.Item
               name="plantedCrops"
-              valuePropName="id"
               label="Culturas plantadas"
               rules={[
                 {
@@ -169,14 +178,10 @@ export const ProducerForm: React.FC<ProducerFormProps> = ({
                 placement="topLeft"
                 mode="multiple"
                 loading={isLoading}
-                defaultValue={initialValues?.plantedCrops.map(
-                  (crop) => crop.id
-                )}
                 fieldNames={{
                   label: "name",
                   value: "id",
                 }}
-                labelInValue
                 options={crops}
                 style={{ width: "100%" }}
               />

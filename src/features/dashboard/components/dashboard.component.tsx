@@ -1,12 +1,8 @@
+import { useMemo } from "react";
 import { SyncOutlined } from "@ant-design/icons";
 import { Button, Card, Col, Divider, Row, Space, Spin, Statistic } from "antd";
 import { useGetDashboardQuery } from "../../../services/brain-agriculture";
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
-
-import { useMemo } from "react";
 import { PieChart } from "../../../components";
-
-ChartJS.register(ArcElement, Tooltip, Legend);
 
 export const Dashboard = () => {
   const { data, refetch } = useGetDashboardQuery();

@@ -1,15 +1,15 @@
 import {
-  getManyCropsById,
-  getPlantedCrops,
+  createProducer,
+  deleteProducerById,
   updateProducerById,
 } from "./../data/db";
 import { rest } from "msw";
 import { db, getProducerById } from "../data/db";
-import { groupBy } from "lodash";
-import { delayedResponse } from "../utils";
-import { v4 as uuidv4 } from 'uuid';
+import { API_BASE_URL } from "../../config";
+import { getDashboard } from "../data/dashboard.mock.service";
+import { delayedResponse } from "../test-utils";
 
-const apiEndpoint = process.env.REACT_APP_API_ENDPOINT;
+const apiEndpoint = API_BASE_URL;
 
 const handlers = [
   rest.get(`${apiEndpoint}/producers`, async (req, res, ctx) => {
@@ -38,58 +38,21 @@ const handlers = [
 
     const data = req.body as any;
 
-    db.producer.create({
-      id: uuidv4(),
-      ...data,
-      plantedCrops: getManyCropsById(data.plantedCrops),
-    });
+    createProducer(data);
 
-    return res(ctx.json(db.producer.getAll()));
+    return res(ctx.json({}));
   }),
 
   rest.delete(`${apiEndpoint}/producers/:id`, async (req, res, ctx) => {
-    db.producer.delete({
-      where: {
-        id: {
-          equals: req.params.id as string,
-        },
-      },
-    });
+    deleteProducerById(req.params.id as string);
 
-    return delayedResponse(ctx.json(db.producer.getAll()));
+    return delayedResponse(ctx.json({}));
   }),
 
   rest.get(`${apiEndpoint}/dashboard`, async (req, res, ctx) => {
-    const farms = db.producer.count();
-    const allFarms = db.producer.getAll();
-    const hectares = allFarms.reduce((acc, curr) => {
-      return acc + curr.hectares;
-    }, 0);
-    const states = groupBy(allFarms, "state");
-    const groupedStates = Object.entries(states).map(([key, values]) => ({
-      state: key,
-      count: values.length,
-    }));
-    const groupedCrops = getPlantedCrops();
+    const dashboard = getDashboard();
 
-    const soilTypes = allFarms.reduce(
-      (acc, curr) => {
-        acc.farmableArea = acc.farmableArea + curr.farmableArea;
-        acc.vegetationArea = acc.vegetationArea + curr.vegetationArea;
-        return acc;
-      },
-      { vegetationArea: 0, farmableArea: 0 }
-    );
-
-    return res(
-      ctx.json({
-        farms,
-        hectares: hectares,
-        states: groupedStates,
-        crops: groupedCrops,
-        soilTypes,
-      })
-    );
+    return res(ctx.json(dashboard));
   }),
 
   rest.get(`${apiEndpoint}/crops`, async (req, res, ctx) => {

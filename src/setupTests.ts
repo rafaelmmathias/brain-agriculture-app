@@ -6,6 +6,13 @@ import "@testing-library/jest-dom";
 import { clearDb, initializeDb } from "./test/data/db";
 import { server } from "./test/server/test-server";
 
+//Mocking charts to avoid error renderings in test environment
+jest.mock("react-chartjs-2", () => ({
+  Pie: () => null,
+}));
+
+//Mocking methods which are not implemented in JSDOM
+//https://jestjs.io/docs/manual-mocks#mocking-methods-which-are-not-implemented-in-jsdom
 global.matchMedia =
   global.matchMedia ||
   function () {

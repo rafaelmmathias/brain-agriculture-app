@@ -17,7 +17,7 @@ export const ProducerCreate = () => {
     }
 
     if (error) {
-      message.error("Ocorreu um erro ao tentar criar o Produtor");
+      message.error("Ocorreu um erro ao tentar criar o Produtor.");
     }
   }, [isSuccess, navigate, error]);
 

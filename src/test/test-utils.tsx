@@ -3,11 +3,15 @@ import {
   render as rtlRender,
   screen,
   waitFor,
+  waitForElementToBeRemoved,
 } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { context, createResponseComposition } from "msw";
 import { Provider } from "react-redux";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { store as appStore } from "../app/store";
+import { ProducerList } from "../features/producers/components";
+const isTesting = process.env.NODE_ENV === "test";
 
 /**
  * This method was necessary because the structure of
@@ -58,14 +62,62 @@ export const getFormElements = () => {
   };
 };
 
+export const fillProducerFormAndSubmit = async (
+  container: HTMLElement,
+  payload: any
+) => {
+  const {
+    documentInput,
+    producerNameInput,
+    farmNameInput,
+    cityInput,
+    totalSizeInput,
+    farmableInput,
+    vegetationInput,
+    submitButton,
+  } = getFormElements();
+
+  userEvent.type(documentInput, payload.document);
+  userEvent.type(producerNameInput, payload.name);
+  userEvent.type(farmNameInput, payload.farmName);
+  userEvent.type(cityInput, payload.city);
+
+  userEvent.type(totalSizeInput, payload.hectares.toString());
+  userEvent.type(farmableInput, payload.farmableArea.toString());
+  userEvent.type(vegetationInput, payload.vegetationArea.toString());
+  userEvent.click(submitButton);
+  await waitFor(() => screen.findByText("Selecione pelo menos uma cultura"));
+
+  await selectOption(container, "state-input", "Alagoas");
+  await selectOption(container, "planted-crops-input", "Soja");
+
+  await waitForElementToBeRemoved(() =>
+    screen.queryByText("Selecione pelo menos uma cultura")
+  );
+
+  userEvent.click(submitButton);
+};
+
+export const delayedResponse = createResponseComposition(undefined, [
+  context.delay(isTesting ? 0 : 1000),
+]);
+
 function render(
   ui: any,
-  { preloadedState, store = appStore, ...renderOptions }: any = {}
+  { store = appStore, path = "/", route = "/", ...renderOptions }: any = {}
 ) {
+  if (route) {
+    window.history.pushState({}, "", route);
+  }
   function Wrapper({ children }: any) {
     return (
       <BrowserRouter>
-        <Provider store={store}>{children}</Provider>
+        <Provider store={store}>
+          <Routes>
+            <Route path={"/producers"} element={<ProducerList />} />
+            <Route path={path} element={children} />
+          </Routes>
+        </Provider>
       </BrowserRouter>
     );
   }
