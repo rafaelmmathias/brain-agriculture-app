@@ -1,22 +1,27 @@
 [
     {
         "id": "1",
-        "name": "Soja"
+        "name": "Soja",
+        "color": "rgb(253 235 159)"
     },
     {
         "id": "2",
-        "name": "Milho"
+        "name": "Milho",
+        "color": "#FBEC5D"
     },
     {
         "id": "3",
-        "name": "Algodão"
+        "name": "Algodão",
+        "color": "#e5e5e5"
     },
     {
         "id": "4",
-        "name": "Café"
+        "name": "Café",
+        "color": "#361500"
     },
     {
         "id": "5",
-        "name": "Cana de Açucar"
+        "name": "Cana de Açucar",
+        "color": "#c5b64f"
     }
 ]

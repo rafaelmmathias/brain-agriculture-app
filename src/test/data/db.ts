@@ -1,6 +1,8 @@
 import { factory, manyOf, primaryKey } from "@mswjs/data";
 import producers from "./producers-data.json";
 import crops from "./crops-data.json";
+import { v4 as uuidv4 } from "uuid";
+import { Crops, Producer } from "../../models/producer";
 
 const models = {
   producer: {
@@ -17,15 +19,13 @@ const models = {
   },
   crops: {
     id: primaryKey(String),
+    color: String,
     name: String,
   },
 };
 
 export const db = factory(models);
 export type Model = keyof typeof db;
-
-export const loadDb = () =>
-  Object.assign(JSON.parse(window.localStorage.getItem("msw-db") || "{}"));
 
 export const getCropsById = (id: string) => {
   return db.crops.findFirst({
@@ -37,7 +37,7 @@ export const getCropsById = (id: string) => {
   });
 };
 
-export const getManyCropsById = (ids: string[]) => {
+export const getManyCropsById = (ids: string[] | Crops[]) => {
   return db.crops.findMany({
     where: {
       id: {
@@ -71,29 +71,22 @@ export const updateProducerById = (id: string, data: any) => {
   });
 };
 
-export const getPlantedCrops = () => {
-  const producers = db.producer.getAll();
-
-  const groupedCrops = new Map();
-  producers.forEach((value) => {
-    value.plantedCrops.forEach((crop) => {
-      if (!groupedCrops.has(crop.id)) {
-        groupedCrops.set(crop.id, {
-          ...crop,
-          count: 1,
-        });
-      } else {
-        const values = groupedCrops.get(crop.id);
-
-        groupedCrops.set(crop.id, {
-          ...crop,
-          count: values.count + 1,
-        });
-      }
-    });
+export const deleteProducerById = (id: string) => {
+  db.producer.delete({
+    where: {
+      id: {
+        equals: id,
+      },
+    },
   });
+};
 
-  return Array.from(groupedCrops.values());
+export const createProducer = (producer: Producer) => {
+  db.producer.create({
+    ...producer,
+    id: uuidv4(),
+    plantedCrops: getManyCropsById(producer.plantedCrops),
+  });
 };
 
 export const initializeDb = () => {
