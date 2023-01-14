@@ -1,7 +1,14 @@
 import { setupWorker } from "msw";
-import { handlers } from "./server-handlers";
+import { API_TYPE } from "../../config";
+import { handlers } from "../graphql/handlers";
+import { handlers as handlersRest } from "./server-handlers";
 
-const server = setupWorker(...handlers);
+const type = API_TYPE;
+
+//@ts-ignore
+const _handlers = type === "graphql" ? handlers : handlersRest;
+
+const server = setupWorker(..._handlers);
 
 server.start({
   quiet: true,

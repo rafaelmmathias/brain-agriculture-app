@@ -1,12 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { brainAgricultureApi } from "../services/brain-agriculture";
+import { getApi } from "../services/brain-agriculture";
 
+const api = getApi();
 export const store = configureStore({
   reducer: {
-    [brainAgricultureApi.reducerPath]: brainAgricultureApi.reducer,
+    [api.reducerPath]: api.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(brainAgricultureApi.middleware),
+    getDefaultMiddleware().concat(api.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

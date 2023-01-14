@@ -102,6 +102,13 @@ export const delayedResponse = createResponseComposition(undefined, [
   context.delay(isTesting ? 0 : 1000),
 ]);
 
+export const wait = async (ms = 0) =>
+  await new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(null);
+    }, ms);
+  });
+
 function render(
   ui: any,
   { store = appStore, path = "/", route = "/", ...renderOptions }: any = {}
