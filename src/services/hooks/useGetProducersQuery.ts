@@ -17,7 +17,7 @@ const fetchProducers = async () => {
   return data;
 };
 export const useGetProducersQuery = () => {
-  return useQuery<Producer[], unknown>({
+  return useQuery<Producer[], Error>({
     queryKey: ["producers"],
     queryFn: fetchProducers,
   });

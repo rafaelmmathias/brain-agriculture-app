@@ -17,7 +17,7 @@ const fetchCrops = async () => {
   return data;
 };
 export const useGetCropsQuery = () => {
-  return useQuery<Crops[], unknown>({
+  return useQuery<Crops[], Error>({
     queryKey: ["crops"],
     queryFn: fetchCrops,
   });

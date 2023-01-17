@@ -21,7 +21,7 @@ const fetchProducer = async (id: string) => {
   return data;
 };
 export const useGetProducerQuery = (id: string) => {
-  return useQuery<Producer, unknown, Producer>(["producer", id], () =>
+  return useQuery<Producer, Error, Producer>(["producer", id], () =>
     fetchProducer(id)
   );
 };

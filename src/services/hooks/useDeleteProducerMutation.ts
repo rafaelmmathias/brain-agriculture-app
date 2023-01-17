@@ -21,7 +21,7 @@ const deleteProducer = async (id: string) => {
 };
 export const useDeleteProducerMutation = () => {
   const queryClient = useQueryClient();
-  return useMutation<Producer[], unknown, string>(deleteProducer, {
+  return useMutation<Producer[], Error, string>(deleteProducer, {
     onSuccess: (data) => {
       queryClient.setQueryData(["producers"], data);
       queryClient.invalidateQueries(["dashboard"]);

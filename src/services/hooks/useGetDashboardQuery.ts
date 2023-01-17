@@ -17,7 +17,7 @@ const fetchDashboard = async () => {
   return data;
 };
 export const useGetDashboardQuery = () => {
-  return useQuery<Dashboard, unknown>({
+  return useQuery<Dashboard, Error>({
     queryKey: ["dashboard"],
     queryFn: fetchDashboard,
   });

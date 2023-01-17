@@ -21,7 +21,7 @@ const createProducer = async (producer: Producer) => {
 };
 export const useAddProducerMutation = () => {
   const queryClient = useQueryClient();
-  return useMutation<Producer[], unknown, Producer>(createProducer, {
+  return useMutation<Producer[], Error, Producer>(createProducer, {
     onSuccess: (data) => {
       queryClient.setQueryData(["producers"], data);
     },

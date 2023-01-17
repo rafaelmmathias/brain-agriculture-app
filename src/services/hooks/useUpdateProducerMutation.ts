@@ -21,7 +21,7 @@ const updateProducer = async (producer: Producer) => {
 };
 export const useUpdateProducerMutation = () => {
   const queryClient = useQueryClient();
-  return useMutation<Producer, unknown, Producer>(updateProducer, {
+  return useMutation<Producer, Error, Producer>(updateProducer, {
     onSuccess: (data) => {
       const currentData = queryClient.getQueryData<Producer[]>(["producers"]);
       if (currentData) {
