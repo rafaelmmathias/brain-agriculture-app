@@ -12,11 +12,11 @@ import {
 import { wait } from "../test-utils";
 
 const apiEndpoint = process.env.REACT_APP_API_ENDPOINT_GRAHQL as string;
-
+const TIMEOUT = 0;
 export const gqlMockClient = graphql.link(apiEndpoint);
 const handlers = [
   gqlMockClient.query("GetDashboard", async (req, res, ctx) => {
-    await wait(400);
+    await wait(TIMEOUT);
     const dashboard = getDashboard();
 
     return res(ctx.data(dashboard));
@@ -28,6 +28,7 @@ const handlers = [
   gqlMockClient.query("GetProducer", async (req, res, ctx) => {
     const id = req.body?.variables.id;
     const producer = getProducerById(id as string);
+    await wait(TIMEOUT);
     if (producer) return res(ctx.data(producer));
     return res(ctx.status(404));
   }),
@@ -36,6 +37,7 @@ const handlers = [
 
     const producerToUpdate = getProducerById(producer.id);
     if (producerToUpdate) {
+      await wait(TIMEOUT);
       updateProducerById(producer.id, producer);
 
       return res(ctx.data(getProducerById(producer.id) as Producer));
@@ -46,26 +48,26 @@ const handlers = [
     const { producer } = req.variables;
 
     createProducer(producer);
-
+    await wait(TIMEOUT);
     return res(ctx.data(db.producer.getAll()));
   }),
   gqlMockClient.mutation("DeleteProducer", async (req, res, ctx) => {
     if (!req.variables.id) return;
 
     const id = req.variables.id as any;
-
+    await wait(TIMEOUT);
     deleteProducerById(id);
-
     return res(ctx.data(db.producer.getAll()));
+    // return res(ctx.status(401));
   }),
   gqlMockClient.query("GetDashboard", async (req, res, ctx) => {
     const dashboard = getDashboard();
-
+    await wait(TIMEOUT);
     return res(ctx.data(dashboard));
   }),
   gqlMockClient.query("GetCrops", async (req, res, ctx) => {
     const crops = db.crops.getAll();
-
+    await wait(TIMEOUT);
     return res(ctx.data(crops));
   }),
 ];

@@ -1,14 +1,19 @@
 import { Card, message, Spin } from "antd";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAddProducerMutation } from "../../../../services/brain-agriculture";
+import { useAddProducerMutation } from "../../../../services/hooks/useAddProducerMutation";
+
 import { ProducerForm } from "../producer-form";
 
 export const ProducerCreate = () => {
   const navigate = useNavigate();
 
-  const [addProducer, { isLoading: loadingCreation, isSuccess, error }] =
-    useAddProducerMutation();
+  const {
+    mutate: addProducer,
+    isSuccess,
+    error,
+    isLoading,
+  } = useAddProducerMutation();
 
   useEffect(() => {
     if (isSuccess) {
@@ -23,7 +28,7 @@ export const ProducerCreate = () => {
 
   return (
     <Card title="Cadastrar produtor">
-      <Spin spinning={loadingCreation}>
+      <Spin spinning={isLoading}>
         <ProducerForm
           onSubmit={(data) => {
             addProducer(data);

@@ -1,3 +1,4 @@
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   fireEvent,
   render as rtlRender,
@@ -7,9 +8,7 @@ import {
 } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { context, createResponseComposition } from "msw";
-import { Provider } from "react-redux";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { store as appStore } from "../app/store";
 import { ProducerList } from "../features/producers/components";
 const isTesting = process.env.NODE_ENV === "test";
 
@@ -111,20 +110,29 @@ export const wait = async (ms = 0) =>
 
 function render(
   ui: any,
-  { store = appStore, path = "/", route = "/", ...renderOptions }: any = {}
+  { path = "/", route = "/", ...renderOptions }: any = {}
 ) {
   if (route) {
     window.history.pushState({}, "", route);
   }
   function Wrapper({ children }: any) {
+    const queryClient = new QueryClient({
+      defaultOptions: {
+        queries: {
+          cacheTime: 5000,
+          staleTime: 5000,
+        },
+      },
+    });
+
     return (
       <BrowserRouter>
-        <Provider store={store}>
+        <QueryClientProvider client={queryClient}>
           <Routes>
             <Route path={"/producers"} element={<ProducerList />} />
             <Route path={path} element={children} />
           </Routes>
-        </Provider>
+        </QueryClientProvider>
       </BrowserRouter>
     );
   }

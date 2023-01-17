@@ -1,6 +1,7 @@
 import React, { useMemo } from "react";
-import { Col, Layout, Menu, Row } from "antd";
+import { Col, Layout, Menu, Row, Spin } from "antd";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useIsFetching } from "@tanstack/react-query";
 const { Header, Content, Footer } = Layout;
 
 interface AppLayoutProps {
@@ -29,8 +30,13 @@ export const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
     .filter((item) => location.pathname.includes(item.key))
     .map((item) => item.key);
 
+  const isFetching = useIsFetching();
+
   return (
     <Layout style={{ minHeight: "100vh" }}>
+      {isFetching > 0 && (
+        <Spin style={{ position: "absolute", top: 20, left: 10 }} />
+      )}
       <Header>
         <Row>
           <Col flex="auto">

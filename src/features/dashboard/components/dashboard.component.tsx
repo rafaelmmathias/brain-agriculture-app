@@ -1,8 +1,8 @@
 import { useMemo } from "react";
 import { SyncOutlined } from "@ant-design/icons";
 import { Button, Card, Col, Divider, Row, Space, Spin, Statistic } from "antd";
-import { useGetDashboardQuery } from "../../../services/brain-agriculture";
 import { PieChart } from "../../../components";
+import { useGetDashboardQuery } from "../../../services/hooks/useGetDashboardQuery";
 
 export const Dashboard = () => {
   const { data, refetch } = useGetDashboardQuery();
@@ -34,7 +34,12 @@ export const Dashboard = () => {
                   <Statistic title="Total de fazendas" value={data.farms} />
                   <Statistic title="Hectares" value={data.hectares} />
                 </Space>
-                <Button icon={<SyncOutlined />} onClick={refetch}></Button>
+                <Button
+                  icon={<SyncOutlined />}
+                  onClick={() => {
+                    refetch();
+                  }}
+                ></Button>
               </Row>
               <Divider />
               <Row gutter={16} justify="center">

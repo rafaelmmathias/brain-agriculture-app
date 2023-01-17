@@ -2,9 +2,8 @@ import { DeleteRowOutlined, EditOutlined } from "@ant-design/icons";
 import { Button, Popconfirm, Row, Space } from "antd";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-
-import { useDeleteProducerMutation } from "../../../../services/brain-agriculture";
 import { Producer } from "../../../../models/producer";
+import { useDeleteProducerMutation } from "../../../../services//hooks/useDeleteProducerMutation";
 
 interface ProducerListActionsProps {
   producer: Producer;
@@ -12,7 +11,7 @@ interface ProducerListActionsProps {
 export const ProducerListActions: React.FC<ProducerListActionsProps> = ({
   producer,
 }) => {
-  const [deleteProducer, { isLoading }] = useDeleteProducerMutation();
+  const deleteMutation = useDeleteProducerMutation();
   const navigate = useNavigate();
 
   const onEditHandler = () => {
@@ -35,10 +34,10 @@ export const ProducerListActions: React.FC<ProducerListActionsProps> = ({
           okText="Sim"
           cancelText="Não"
           placement="left"
-          onConfirm={() => deleteProducer(producer.id)}
+          onConfirm={() => deleteMutation.mutateAsync(producer.id)}
           data-testid="testing-id"
           okButtonProps={{
-            loading: isLoading,
+            loading: deleteMutation.isLoading,
             // @ts-ignore: ignoring this line because this antd component doesn't have support for this prop
             "data-testid": `delete-${producer.id}`,
           }}

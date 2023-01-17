@@ -1,7 +1,7 @@
 import { SyncOutlined } from "@ant-design/icons";
 import { Button, Row, Space, Spin, Table, Typography } from "antd";
 import { useNavigate } from "react-router-dom";
-import { useGetProducersQuery } from "../../../../services/brain-agriculture";
+import { useGetProducersQuery } from "../../../../services//hooks/useGetProducersQuery";
 import { useProducersListColumns } from "./use-producer-list-columns";
 const { Title } = Typography;
 
@@ -24,7 +24,11 @@ export const ProducerList = () => {
             >
               Cadastrar
             </Button>
-            <Button data-testid="refresh-producer-list" type="primary" onClick={refetch}>
+            <Button
+              data-testid="refresh-producer-list"
+              type="primary"
+              onClick={() => refetch()}
+            >
               <SyncOutlined spin={isFetching} disabled={isFetching} />
             </Button>
           </Space>
@@ -37,7 +41,7 @@ export const ProducerList = () => {
             columns={columns}
             rowKey={(producer) => producer.document}
             locale={{
-              emptyText: "Nenhum produtor cadastrado"
+              emptyText: "Nenhum produtor cadastrado",
             }}
           />
         )}

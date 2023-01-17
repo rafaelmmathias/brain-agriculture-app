@@ -1,16 +1,13 @@
 import { screen, waitFor } from "@testing-library/react";
-import { rest } from "msw";
-import { API_BASE_URL } from "../../../../config";
+import { gqlMockClient } from "../../../../test/graphql/handlers";
 import { server } from "../../../../test/server/test-server";
 import { fillProducerFormAndSubmit, render } from "../../../../test/test-utils";
 import { ProducerCreate } from "./producer-create.component";
 
-const errorHandler = rest.post(
-  `${API_BASE_URL}/producers`,
+const errorHandler = gqlMockClient.mutation(
+  "CreateProducer",
   async (req, res, ctx) => {
-    if (!req.body) return;
-
-    return res(ctx.status(500), ctx.json({}));
+    return res(ctx.status(500));
   }
 );
 

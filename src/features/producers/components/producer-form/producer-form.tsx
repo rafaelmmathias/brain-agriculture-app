@@ -11,10 +11,10 @@ import {
 
 import { SelectState } from "../../../../components";
 import { Producer } from "../../../../models/producer";
-import { useGetCropsQuery } from "../../../../services/brain-agriculture";
 import { ProducerFormRules } from "./producer-form.rules";
 import InputMask from "antd-mask-input";
 import { useMemo } from "react";
+import { useGetCropsQuery } from "../../../../services//hooks/useGetCropsQuery";
 
 interface ProducerFormProps {
   initialValues?: Producer;
