@@ -18,11 +18,12 @@ const handlers = [
   gqlMockClient.query("GetDashboard", async (req, res, ctx) => {
     await wait(TIMEOUT);
     const dashboard = getDashboard();
-
+    if (Math.floor(Math.random() * 5) === 1) return res(ctx.status(401));
     return res(ctx.data(dashboard));
   }),
   gqlMockClient.query("GetProducers", async (req, res, ctx) => {
     const producers = db.producer.getAll();
+    if (Math.floor(Math.random() * 5) === 1) return res(ctx.status(401));
     return res(ctx.data(producers));
   }),
   gqlMockClient.query("GetProducer", async (req, res, ctx) => {
@@ -60,13 +61,9 @@ const handlers = [
     return res(ctx.data(db.producer.getAll()));
     // return res(ctx.status(401));
   }),
-  gqlMockClient.query("GetDashboard", async (req, res, ctx) => {
-    const dashboard = getDashboard();
-    await wait(TIMEOUT);
-    return res(ctx.data(dashboard));
-  }),
   gqlMockClient.query("GetCrops", async (req, res, ctx) => {
     const crops = db.crops.getAll();
+    if (Math.floor(Math.random() * 5) === 1) return res(ctx.status(401));
     await wait(TIMEOUT);
     return res(ctx.data(crops));
   }),

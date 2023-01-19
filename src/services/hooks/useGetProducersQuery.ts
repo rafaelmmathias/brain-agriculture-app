@@ -1,24 +1,7 @@
 import { Producer } from "./../../models/producer";
-import { useQuery } from "@tanstack/react-query";
-import { request, gql } from "graphql-request";
-import { API_BASE_URL_GRAPH_QL } from "../../config";
+import { useQueryBase } from "../base-hooks/use-query-base";
+import { getProducersQuery } from "../queries/get-producers";
 
-const endpoint = API_BASE_URL_GRAPH_QL;
-const fetchProducers = async () => {
-  const data = await request<Producer[]>(
-    endpoint,
-    gql`
-      query GetProducers {
-        soilTypes
-      }
-    `
-  );
-
-  return data;
-};
 export const useGetProducersQuery = () => {
-  return useQuery<Producer[], Error>({
-    queryKey: ["producers"],
-    queryFn: fetchProducers,
-  });
+  return useQueryBase<Producer[]>("producers", getProducersQuery);
 };

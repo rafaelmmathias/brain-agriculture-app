@@ -3,8 +3,9 @@ import { SyncOutlined } from "@ant-design/icons";
 import { Button, Card, Col, Divider, Row, Space, Spin, Statistic } from "antd";
 import { PieChart } from "../../../components";
 import { useGetDashboardQuery } from "../../../services/hooks/useGetDashboardQuery";
+import { ErrorBoundary } from "./dashboard.error";
 
-export const Dashboard = () => {
+const DashboardPage = () => {
   const { data, refetch } = useGetDashboardQuery();
 
   const soilTypes = useMemo(
@@ -67,5 +68,13 @@ export const Dashboard = () => {
     </>
   ) : (
     <Spin spinning={true}></Spin>
+  );
+};
+
+export const Dashboard = () => {
+  return (
+    <ErrorBoundary>
+      <DashboardPage />
+    </ErrorBoundary>
   );
 };

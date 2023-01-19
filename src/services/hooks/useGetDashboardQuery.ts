@@ -1,24 +1,7 @@
-import { useQuery } from "@tanstack/react-query";
-import { request, gql } from "graphql-request";
-import { API_BASE_URL_GRAPH_QL } from "../../config";
 import { Dashboard } from "../../models/dashboard";
+import { useQueryBase } from "../base-hooks/use-query-base";
+import { getDashboardQuery } from "../queries";
 
-const endpoint = API_BASE_URL_GRAPH_QL;
-const fetchDashboard = async () => {
-  const data = await request<Dashboard>(
-    endpoint,
-    gql`
-      query GetDashboard {
-        soilTypes
-      }
-    `
-  );
-
-  return data;
-};
 export const useGetDashboardQuery = () => {
-  return useQuery<Dashboard, Error>({
-    queryKey: ["dashboard"],
-    queryFn: fetchDashboard,
-  });
+  return useQueryBase<Dashboard>("dashboard", getDashboardQuery);
 };

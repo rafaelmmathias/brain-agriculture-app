@@ -34,7 +34,7 @@ export const ProducerListActions: React.FC<ProducerListActionsProps> = ({
           okText="Sim"
           cancelText="Não"
           placement="left"
-          onConfirm={() => deleteMutation.mutateAsync(producer.id)}
+          onConfirm={() => deleteMutation.mutateAsync(producer)}
           data-testid="testing-id"
           okButtonProps={{
             loading: deleteMutation.isLoading,
