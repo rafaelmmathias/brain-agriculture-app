@@ -1,4 +1,4 @@
-import { Dashboard } from "models/dashboard";
+import { Dashboard } from "../../../models/dashboard";
 import { getDashboardFetcher } from "../../../services/api";
 import { useQueryBase } from "../../../services/core";
 

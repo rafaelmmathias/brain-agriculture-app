@@ -5,7 +5,7 @@
 import "@testing-library/jest-dom";
 import { clearDb, initializeDb } from "./test/data/db";
 import { server } from "./test/server/test-server";
-
+import "./config";
 //Mocking charts to avoid error renderings in test environment
 jest.mock("react-chartjs-2", () => ({
   Pie: () => null,
@@ -22,6 +22,11 @@ global.matchMedia =
       removeListener: jest.fn(),
     };
   };
+
+jest.mock("./config", () => ({
+  API_BASE_URL_GRAPH_QL: "http://localhost:4000/graphql",
+  ENVIRONMENT: "test",
+}));
 
 beforeAll(() => server.listen());
 afterEach(() => {

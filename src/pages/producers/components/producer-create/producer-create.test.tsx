@@ -1,7 +1,7 @@
 import { screen, waitFor } from "@testing-library/react";
-import { gqlMockClient } from "test/graphql/handlers";
-import { server } from "test/server/test-server";
-import { fillProducerFormAndSubmit, render } from "test/test-utils";
+import { gqlMockClient } from "../../../../test/graphql/handlers";
+import { server } from "../../../../test/server/test-server";
+import { fillProducerFormAndSubmit, render } from "../../../../test/test-utils";
 import { ProducerCreate } from "./producer-create.component";
 
 const errorHandler = gqlMockClient.mutation(

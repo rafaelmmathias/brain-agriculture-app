@@ -44,7 +44,7 @@ export function useQueryBase<T, TParams extends object>(
   const context = useQuery<T, Error, T>(keys, () => fetcher(params), {
     enabled: !!keys,
     useErrorBoundary: (error, query) => {
-      if (error.response.status === 401) {
+      if (error.response?.status === 401) {
         query.invalidate();
         return true;
       }

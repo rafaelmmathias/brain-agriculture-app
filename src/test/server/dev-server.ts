@@ -1,14 +1,10 @@
 import { setupWorker } from "msw";
+import { ENVIRONMENT } from "../../config";
 import { handlers } from "../graphql/handlers";
 
 const server = setupWorker(...handlers);
 
-if (import.meta.env.MODE === "development") {
-  server.start({
-    quiet: true,
-    onUnhandledRequest: "bypass",
-  });
-}
-
-export * from "msw";
-export { server };
+server.start({
+  quiet: true,
+  onUnhandledRequest: "bypass",
+});

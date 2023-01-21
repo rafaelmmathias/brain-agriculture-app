@@ -2,7 +2,7 @@ import { factory, manyOf, primaryKey } from "@mswjs/data";
 import producers from "./producers-data.json";
 import crops from "./crops-data.json";
 import { v4 as uuidv4 } from "uuid";
-import { Crops, Producer } from "models/producer";
+import { Crops, Producer } from "../../models/producer";
 
 const models = {
   producer: {

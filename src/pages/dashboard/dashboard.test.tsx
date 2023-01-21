@@ -1,6 +1,6 @@
 import { screen, waitFor } from "@testing-library/react";
 import { Dashboard } from "./components";
-import { render } from "test/test-utils";
+import { render } from "../../test/test-utils";
 
 describe("Dashboard", () => {
   it("should render dashboard and show this label", async () => {

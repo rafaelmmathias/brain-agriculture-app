@@ -1,4 +1,4 @@
-import { Crops } from "models/producer";
+import { Crops } from "../../../models/producer";
 import { getCropsFetcher } from "../../../services/api";
 import { ConfigOptions, useQueryBase } from "../../../services/core";
 

@@ -10,7 +10,6 @@ import userEvent from "@testing-library/user-event";
 import { context, createResponseComposition } from "msw";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ProducerList } from "../pages/producers/components";
-const isTesting = import.meta.env.NODE_ENV === "test";
 
 /**
  * This method was necessary because the structure of
@@ -96,10 +95,6 @@ export const fillProducerFormAndSubmit = async (
 
   userEvent.click(submitButton);
 };
-
-export const delayedResponse = createResponseComposition(undefined, [
-  context.delay(isTesting ? 0 : 1000),
-]);
 
 export const wait = async (ms = 0) =>
   await new Promise((resolve) => {

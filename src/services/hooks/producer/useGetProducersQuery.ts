@@ -1,4 +1,4 @@
-import { Producer } from "models/producer";
+import { Producer } from "../../../models/producer";
 import { useQueryBase, usePrefetch } from "../../../services/core";
 import { getProducersFetcher } from "../../../services/api";
 
