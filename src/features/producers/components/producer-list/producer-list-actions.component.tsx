@@ -3,7 +3,10 @@ import { Button, Popconfirm, Row, Space } from "antd";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Producer } from "../../../../models/producer";
-import { useDeleteProducerMutation } from "../../../../services//hooks/useDeleteProducerMutation";
+import {
+  useDeleteProducerMutation,
+  usePrefetchProducer,
+} from "../../../../services/hooks";
 
 interface ProducerListActionsProps {
   producer: Producer;
@@ -22,10 +25,19 @@ export const ProducerListActions: React.FC<ProducerListActionsProps> = ({
     });
   };
 
+  const prefetchProducer = usePrefetchProducer();
+  const prefetchProducerHandler = () => {
+    prefetchProducer({ id: producer.id });
+  };
+
   return (
     <Row justify="end">
       <Space>
-        <Button type="primary" onClick={onEditHandler}>
+        <Button
+          type="primary"
+          onMouseEnter={() => prefetchProducerHandler()}
+          onClick={onEditHandler}
+        >
           <EditOutlined />
         </Button>
 

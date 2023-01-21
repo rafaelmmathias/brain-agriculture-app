@@ -1,13 +1,16 @@
 import { Card, message, Spin } from "antd";
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { useGetProducerQuery } from "../../../../services//hooks/useGetProducerQuery";
-import { useUpdateProducerMutation } from "../../../../services//hooks/useUpdateProducerMutation";
+import {
+  useGetProducerQuery,
+  useUpdateProducerMutation,
+} from "../../../../services//hooks";
 import { ProducerForm } from "../producer-form";
 
 export const ProducerEdit = () => {
   const params = useParams();
   const navigate = useNavigate();
+
   const { isLoading, data } = useGetProducerQuery(params.id || "");
   const {
     isLoading: loadingUpdate,
@@ -24,7 +27,16 @@ export const ProducerEdit = () => {
     if (error) {
       message.error("Ocorreu um erro ao tentar atualizar o Produtor.");
     }
-  }, [isSuccess, navigate, error]);
+
+    if (!isLoading && !data) {
+      message.error("Produtor não encontrado");
+      if (window.history.state && window.history.state.idx > 0) {
+        navigate(-1);
+      } else {
+        navigate("/producers");
+      }
+    }
+  }, [isSuccess, navigate, error, isLoading, data]);
 
   return (
     <>

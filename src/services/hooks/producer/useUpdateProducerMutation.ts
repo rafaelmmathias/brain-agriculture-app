@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { request, gql } from "graphql-request";
-import { API_BASE_URL_GRAPH_QL } from "../../config";
-import { Producer } from "../../models/producer";
+import { API_BASE_URL_GRAPH_QL } from "../../../config";
+import { Producer } from "../../../models/producer";
 
 const endpoint = API_BASE_URL_GRAPH_QL;
 const updateProducer = async (producer: Producer) => {

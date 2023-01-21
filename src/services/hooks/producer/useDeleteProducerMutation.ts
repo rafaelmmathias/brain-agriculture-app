@@ -1,8 +1,8 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { request, gql } from "graphql-request";
-import { API_BASE_URL_GRAPH_QL } from "../../config";
-import { Producer } from "../../models/producer";
-import { ProducerParams } from "./useGetProducerQuery";
+import { API_BASE_URL_GRAPH_QL } from "../../../config";
+import { Producer } from "../../../models/producer";
+import { ProducerParams } from "../../api";
 
 const endpoint = API_BASE_URL_GRAPH_QL;
 const deleteProducer = async ({ id }: ProducerParams) => {
@@ -25,9 +25,9 @@ export const useDeleteProducerMutation = () => {
   const queryClient = useQueryClient();
   return useMutation<Producer[], Error, ProducerParams>(deleteProducer, {
     onSuccess: (data, { id }) => {
-      queryClient.setQueryData(["producers", null], data);
-      queryClient.invalidateQueries(["producer", { id }]);
-      queryClient.invalidateQueries(["dashboard", null]);
+      queryClient.setQueryData(["producers"], data);
+      queryClient.removeQueries(["producer", { id }]);
+      queryClient.invalidateQueries(["dashboard"]);
     },
   });
 };

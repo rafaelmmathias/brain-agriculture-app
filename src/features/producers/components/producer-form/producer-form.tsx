@@ -14,7 +14,7 @@ import { Producer } from "../../../../models/producer";
 import { ProducerFormRules } from "./producer-form.rules";
 import InputMask from "antd-mask-input";
 import { useMemo } from "react";
-import { useGetCropsQuery } from "../../../../services//hooks/useGetCropsQuery";
+import { useGetCropsQuery } from "../../../../services/hooks";
 
 interface ProducerFormProps {
   initialValues?: Producer;

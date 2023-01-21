@@ -1,7 +1,7 @@
 import { SyncOutlined } from "@ant-design/icons";
 import { Button, Row, Space, Spin, Table, Typography } from "antd";
 import { useNavigate } from "react-router-dom";
-import { useGetProducersQuery } from "../../../../services//hooks/useGetProducersQuery";
+import { useGetProducersQuery } from "../../../../services/hooks";
 import { useProducersListColumns } from "./use-producer-list-columns";
 const { Title } = Typography;
 
@@ -35,16 +35,14 @@ export const ProducerList = () => {
         </Row>
       </Row>
       <Spin spinning={isFetching}>
-        {data && (
-          <Table
-            dataSource={data}
-            columns={columns}
-            rowKey={(producer) => producer.document}
-            locale={{
-              emptyText: "Nenhum produtor cadastrado",
-            }}
-          />
-        )}
+        <Table
+          dataSource={data}
+          columns={columns}
+          rowKey={(producer) => producer.document}
+          locale={{
+            emptyText: "Nenhum produtor cadastrado",
+          }}
+        />
       </Spin>
     </>
   );

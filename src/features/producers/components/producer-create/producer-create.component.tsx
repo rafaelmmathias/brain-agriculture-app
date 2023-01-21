@@ -1,7 +1,7 @@
 import { Card, message, Spin } from "antd";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAddProducerMutation } from "../../../../services/hooks/useAddProducerMutation";
+import { useCreateProducerMutation } from "../../../../services/hooks";
 
 import { ProducerForm } from "../producer-form";
 
@@ -13,7 +13,7 @@ export const ProducerCreate = () => {
     isSuccess,
     error,
     isLoading,
-  } = useAddProducerMutation();
+  } = useCreateProducerMutation();
 
   useEffect(() => {
     if (isSuccess) {

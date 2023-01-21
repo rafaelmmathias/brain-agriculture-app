@@ -19,6 +19,7 @@ export const queryClient = new QueryClient({
     queries: {
       cacheTime: 1000 * 60 * 60 * 24, // 24 hours
       staleTime: 60000,
+      retry: false
     },
   },
 });

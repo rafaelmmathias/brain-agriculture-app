@@ -2,6 +2,7 @@ import React, { useMemo } from "react";
 import { Col, Layout, Menu, Row, Spin } from "antd";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useIsFetching } from "@tanstack/react-query";
+import { usePrefetchProducers } from "../services/hooks";
 const { Header, Content, Footer } = Layout;
 
 interface AppLayoutProps {
@@ -31,6 +32,7 @@ export const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
     .map((item) => item.key);
 
   const isFetching = useIsFetching();
+  const prefetchProducers = usePrefetchProducers();
 
   return (
     <Layout style={{ minHeight: "100vh" }}>
@@ -46,6 +48,9 @@ export const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
               selectedKeys={selectedMenuItems}
               items={menu}
               onClick={(menuInfo) => navigate(menuInfo.key)}
+              onMouseEnter={() => {
+                prefetchProducers();
+              }}
             />
           </Col>
         </Row>
