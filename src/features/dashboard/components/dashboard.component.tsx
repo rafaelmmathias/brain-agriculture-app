@@ -26,44 +26,40 @@ const DashboardPage = () => {
 
   return data ? (
     <>
-      <Row justify="center">
-        <Col span={18}>
-          <Row gutter={16} justify="center">
-            <Card>
-              <Row justify="space-between" align="middle">
-                <Space size={"large"}>
-                  <Statistic title="Total de fazendas" value={data.farms} />
-                  <Statistic title="Hectares" value={data.hectares} />
-                </Space>
-                <Button
-                  icon={<SyncOutlined />}
-                  onClick={() => {
-                    refetch();
-                  }}
-                ></Button>
-              </Row>
-              <Divider />
-              <Row gutter={16} justify="center">
-                <Col span={8}>
-                  <Card title={"Fazendas por estado"}>
-                    <PieChart data={data.states} fieldLabelName="state" />
-                  </Card>
-                </Col>
-                <Col span={8}>
-                  <Card title={"Por culturas"}>
-                    <PieChart data={data.crops} />
-                  </Card>
-                </Col>
-
-                <Col span={8}>
-                  <Card title={"Por uso do solo"}>
-                    <PieChart data={soilTypes} />
-                  </Card>
-                </Col>
-              </Row>
-            </Card>
+      <Row gutter={16} justify="center">
+        <Card>
+          <Row justify="space-between" align="middle">
+            <Space size={"large"}>
+              <Statistic title="Total de fazendas" value={data.farms} />
+              <Statistic title="Hectares" value={data.hectares} />
+            </Space>
+            <Button
+              icon={<SyncOutlined />}
+              onClick={() => {
+                refetch();
+              }}
+            ></Button>
           </Row>
-        </Col>
+          <Divider />
+          <Row gutter={16} justify="center">
+            <Col span={8}>
+              <Card title={"Fazendas por estado"}>
+                <PieChart data={data.states} fieldLabelName="state" />
+              </Card>
+            </Col>
+            <Col span={8}>
+              <Card title={"Por culturas"}>
+                <PieChart data={data.crops} />
+              </Card>
+            </Col>
+
+            <Col span={8}>
+              <Card title={"Por uso do solo"}>
+                <PieChart data={soilTypes} />
+              </Card>
+            </Col>
+          </Row>
+        </Card>
       </Row>
     </>
   ) : (
