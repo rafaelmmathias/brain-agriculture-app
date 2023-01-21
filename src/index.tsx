@@ -8,7 +8,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { persistQueryClient } from "@tanstack/react-query-persist-client";
 import { createSyncStoragePersister } from "@tanstack/query-sync-storage-persister";
-import { ErrorBoundary } from "./features/error/error-default";
+import { ErrorBoundary } from "pages/error/error-default";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
