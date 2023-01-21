@@ -1,4 +1,4 @@
-import { Crops } from "../../../models/producer";
+import { Crops } from "models/producer";
 import { getCropsQuery } from "./queries";
 import { gqlRequest } from "../gql-client";
 

@@ -5,7 +5,7 @@ import {
   fillProducerFormAndSubmit,
   getFormElements,
   render,
-} from "../../../../test/test-utils";
+} from "test/test-utils";
 import { ProducerForm } from "./producer-form";
 
 describe("Producer Form", () => {

@@ -1,5 +1,5 @@
 import { graphql } from "msw";
-import { Producer } from "../../models/producer";
+import { Producer } from "models/producer";
 import { getDashboard } from "../data/dashboard.mock.service";
 import {
   createProducer,
