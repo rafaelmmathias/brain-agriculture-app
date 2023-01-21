@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { Producer } from "models/producer";
-import { createProducerFetcher } from "services/api/producers";
+import { Producer } from "../../../models/producer";
+import { createProducerFetcher } from "../../../services/api/producers";
 
 export const useCreateProducerMutation = () => {
   const queryClient = useQueryClient();

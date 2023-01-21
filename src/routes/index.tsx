@@ -1,6 +1,6 @@
 import { Routes, Route, Navigate } from "react-router-dom";
-import { DashboardRoutes } from "pages/dashboard/routes";
-import { ProducerRoutes } from "pages/producers/routes";
+import { DashboardRoutes } from "../pages/dashboard/routes";
+import { ProducerRoutes } from "../pages/producers/routes";
 import { NotFound } from "../layout";
 
 export const AppRouter = () => {

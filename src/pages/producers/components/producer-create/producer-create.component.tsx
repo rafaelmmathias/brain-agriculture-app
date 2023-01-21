@@ -1,7 +1,7 @@
 import { Card, message, Spin } from "antd";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useCreateProducerMutation } from "services/hooks";
+import { useCreateProducerMutation } from "../../../../services/hooks";
 
 import { ProducerForm } from "../producer-form";
 

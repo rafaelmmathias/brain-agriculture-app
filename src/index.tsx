@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
+// import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import "./App.css";
 import "./test/server";
@@ -8,18 +8,18 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { persistQueryClient } from "@tanstack/react-query-persist-client";
 import { createSyncStoragePersister } from "@tanstack/query-sync-storage-persister";
-import { ErrorBoundary } from "pages/error/error-default";
+import { ErrorBoundary } from "./pages/error/error-default";
 
-const root = ReactDOM.createRoot(
-  document.getElementById("root") as HTMLElement
-);
+// const root = ReactDOM.createRoot(
+//   document.getElementById("root") as HTMLElement
+// );
 
 export const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       cacheTime: 1000 * 60 * 60 * 24, // 24 hours
       staleTime: 60000,
-      retry: false
+      retry: false,
     },
   },
 });
@@ -33,7 +33,7 @@ persistQueryClient({
   persister: localStoragePersister,
 });
 
-root.render(
+export const App = () => (
   <ErrorBoundary>
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
@@ -43,3 +43,6 @@ root.render(
     </QueryClientProvider>
   </ErrorBoundary>
 );
+// root.render(
+
+// );

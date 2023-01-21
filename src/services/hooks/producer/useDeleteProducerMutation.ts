@@ -1,8 +1,8 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { request, gql } from "graphql-request";
-import { API_BASE_URL_GRAPH_QL } from "config";
-import { Producer } from "models/producer";
-import { ProducerParams } from "services/api";
+import { API_BASE_URL_GRAPH_QL } from "../../../config";
+import { Producer } from "../../../models/producer";
+import { ProducerParams } from "../../../services/api";
 
 const endpoint = API_BASE_URL_GRAPH_QL;
 const deleteProducer = async ({ id }: ProducerParams) => {

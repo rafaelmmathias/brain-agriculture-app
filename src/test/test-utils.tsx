@@ -9,8 +9,8 @@ import {
 import userEvent from "@testing-library/user-event";
 import { context, createResponseComposition } from "msw";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { ProducerList } from "pages/producers/components";
-const isTesting = process.env.NODE_ENV === "test";
+import { ProducerList } from "../pages/producers/components";
+const isTesting = import.meta.env.NODE_ENV === "test";
 
 /**
  * This method was necessary because the structure of

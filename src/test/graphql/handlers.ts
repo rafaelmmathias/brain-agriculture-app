@@ -1,5 +1,5 @@
 import { graphql } from "msw";
-import { Producer } from "models/producer";
+import { Producer } from "../../models/producer";
 import { getDashboard } from "../data/dashboard.mock.service";
 import {
   createProducer,
@@ -11,8 +11,8 @@ import {
 
 import { wait } from "../test-utils";
 
-const apiEndpoint = process.env.REACT_APP_API_ENDPOINT_GRAHQL as string;
-const isTesting = process.env.NODE_ENV === "test";
+const apiEndpoint = import.meta.env.VITE_API_ENDPOINT_GRAHQL as string;
+const isTesting = import.meta.env.NODE_ENV === "test";
 const getRandom = () => {
   return Math.floor(Math.random() * 3) * 1000;
 };

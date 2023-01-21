@@ -1,4 +1,4 @@
-import codegen from 'codegen.macro'
+import codegen from "codegen.macro";
 
 /**
  * When running in dev, we use mock with dev-server
@@ -7,13 +7,15 @@ import codegen from 'codegen.macro'
  * So, to run in production, make sure to have an API running
  * on the .env file endpoint.
  */
+console.log(import.meta.env)
+// codegen`
+// if (import.meta.env.MODE === 'development') {
+//   module.exports = "export * from './dev-server'"
+// } else if (import.meta.env.MODE === 'test') {
+//   module.exports = "export * from './test-server'"
+// } else {
+//   module.exports = ""
+// }
+// `;
 
-codegen`
-if (process.env.NODE_ENV === 'development') {
-  module.exports = "export * from './dev-server'"
-} else if (process.env.NODE_ENV === 'test') {
-  module.exports = "export * from './test-server'"
-} else {
-  module.exports = ""
-}
-`
+export * from "./dev-server";

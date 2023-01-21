@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import {
   useGetProducerQuery,
   useUpdateProducerMutation,
-} from "services//hooks";
+} from "../../../../services//hooks";
 import { ProducerForm } from "../producer-form";
 
 export const ProducerEdit = () => {

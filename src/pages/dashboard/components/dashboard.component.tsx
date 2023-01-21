@@ -1,8 +1,8 @@
 import { useMemo } from "react";
 import { SyncOutlined } from "@ant-design/icons";
 import { Button, Card, Col, Divider, Row, Space, Spin, Statistic } from "antd";
-import { PieChart } from "components/charts";
-import { useGetDashboardQuery } from "services/hooks";
+import { PieChart } from "../../../components/charts";
+import { useGetDashboardQuery } from "../../../services/hooks";
 import { ErrorBoundary } from "./dashboard.error";
 
 const DashboardPage = () => {
