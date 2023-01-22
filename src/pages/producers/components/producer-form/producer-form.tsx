@@ -1,3 +1,6 @@
+import { useMemo } from "react";
+import InputMask from "antd-mask-input";
+import { ProducerFormRules } from "./producer-form.rules";
 import {
   Button,
   Col,
@@ -8,13 +11,9 @@ import {
   Row,
   Select,
 } from "antd";
-
-import { SelectState } from "../../../../components";
-import { Producer } from "../../../../models/producer";
-import { ProducerFormRules } from "./producer-form.rules";
-import InputMask from "antd-mask-input";
-import { useMemo } from "react";
-import { useGetCropsQuery } from "../../../../services/hooks";
+import { SelectState } from "@/components";
+import { Producer } from "@/models/producer";
+import { useGetCropsQuery } from "@/services/hooks";
 
 interface ProducerFormProps {
   initialValues?: Producer;

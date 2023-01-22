@@ -1,4 +1,4 @@
-import { Producer } from "../../../models/producer";
+import { Producer } from "@/models/producer";
 import { gqlRequest } from "../gql-client";
 import { createProducerMutation } from "./mutations";
 import { getProducerQuery, getProducersQuery } from "./queries";

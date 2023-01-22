@@ -1,12 +1,12 @@
+import React from "react";
 import { DeleteRowOutlined, EditOutlined } from "@ant-design/icons";
 import { Button, Popconfirm, Row, Space } from "antd";
-import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Producer } from "../../../../models/producer";
+import { Producer } from "@/models/producer";
 import {
   useDeleteProducerMutation,
   usePrefetchProducer,
-} from "../../../../services/hooks";
+} from "@/services/hooks";
 
 interface ProducerListActionsProps {
   producer: Producer;

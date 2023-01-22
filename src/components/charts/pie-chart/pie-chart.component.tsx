@@ -1,7 +1,7 @@
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { useMemo } from "react";
 import { Pie } from "react-chartjs-2";
-import { stringToColor } from "../../../utils/string-prototypes";
+import { stringToColor } from "@/utils/string-prototypes";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 

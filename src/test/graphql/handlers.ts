@@ -1,6 +1,6 @@
 import { graphql } from "msw";
-import { API_BASE_URL_GRAPH_QL, ENVIRONMENT } from "../../config";
-import { Producer } from "../../models/producer";
+import { API_BASE_URL_GRAPH_QL, ENVIRONMENT } from "@/config";
+import { Producer } from "@/models/producer";
 import { getDashboard } from "../data/dashboard.mock.service";
 import {
   createProducer,

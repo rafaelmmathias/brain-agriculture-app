@@ -3,10 +3,10 @@ import {
   waitFor,
   waitForElementToBeRemoved,
 } from "@testing-library/react";
-import { ProducerList } from "..";
-import { render } from "../../../../test/test-utils";
 import userEvent from "@testing-library/user-event";
-import { clearDb } from "../../../../test/data/db";
+import { ProducerList } from ".";
+import { render } from "@/test/test-utils";
+import { clearDb } from "@/test/data/db";
 
 describe("Producer list", () => {
   it("should render all default mocked items", async () => {

@@ -1,7 +1,7 @@
 import { Row, Tag, Typography } from "antd";
 import { ColumnsType } from "antd/lib/table";
 import { ProducerListActions } from ".";
-import { Producer } from "../../../../models/producer";
+import { Producer } from "@/models/producer";
 
 export const useProducersListColumns = () => {
   return [

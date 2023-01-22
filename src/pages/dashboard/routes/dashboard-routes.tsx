@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import { AppLayout } from "../../../layout";
+import { AppLayout } from "@/layout";
 import { Dashboard } from "../components";
 
 export const DashboardRoutes = () => {

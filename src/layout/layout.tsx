@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import { Col, Layout, Menu, Row, Spin } from "antd";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useIsFetching } from "@tanstack/react-query";
-import { usePrefetchProducers } from "../services/hooks";
+import { usePrefetchProducers } from "@/services/hooks";
 const { Header, Content, Footer } = Layout;
 
 interface AppLayoutProps {

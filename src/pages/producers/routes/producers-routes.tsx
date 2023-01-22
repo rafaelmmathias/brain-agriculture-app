@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import { AppLayout } from "../../../layout";
+import { AppLayout } from "@/layout";
 import { ProducerList, ProducerCreate, ProducerEdit } from "../components";
 
 export const ProducerRoutes = () => {
