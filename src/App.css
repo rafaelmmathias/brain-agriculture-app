@@ -1,5 +1,1 @@
-@import '../node_modules/antd/dist/antd.css';
-
-.-item-explain-error {
-    color: #ff4d4f
-}
+@import "../node_modules/antd/dist/reset.css";

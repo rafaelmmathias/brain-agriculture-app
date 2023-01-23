@@ -26,7 +26,9 @@ describe("Producer list", () => {
       screen.findAllByTestId("delete-button")
     );
 
-    userEvent.click(deleteButtons[0]);
+    userEvent.click(deleteButtons[0], undefined, {
+      skipPointerEventsCheck: true,
+    });
 
     const confirmButton = await waitFor(() => screen.findByTestId("delete-1"));
     userEvent.click(confirmButton);

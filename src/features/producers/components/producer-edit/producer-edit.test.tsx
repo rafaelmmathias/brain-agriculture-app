@@ -17,7 +17,9 @@ describe("Producer edit", () => {
 
     userEvent.type(producerNameInput, "a new name");
 
-    userEvent.click(submitButton);
+    userEvent.click(submitButton, undefined, {
+      skipPointerEventsCheck: true,
+    });
 
     await waitFor(async () => {
       const successMessage = await screen.findByText(
