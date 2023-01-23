@@ -1,11 +1,11 @@
 import { Producer } from "@/models/producer";
 import { useQueryBase, usePrefetch } from "@/services/core";
-import { getProducersFetcher } from "@/services/api";
+import { getProducers } from "@/services/api";
 
 export const useGetProducersQuery = () => {
-  return useQueryBase<Producer[]>("producers", getProducersFetcher);
+  return useQueryBase<Producer[]>("producers", getProducers);
 };
 
 export const usePrefetchProducers = () => {
-  return usePrefetch<Producer[]>("producers", getProducersFetcher);
+  return usePrefetch<Producer[]>("producers", getProducers);
 };
