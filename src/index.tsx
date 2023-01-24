@@ -5,7 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { persistQueryClient } from "@tanstack/react-query-persist-client";
 import { createSyncStoragePersister } from "@tanstack/query-sync-storage-persister";
-import { ErrorBoundary } from "@/ui/features/error/error-default";
+import { ErrorBoundary } from "@/ui/pages/error/error-default";
 import "./test/server";
 
 export const queryClient = new QueryClient({

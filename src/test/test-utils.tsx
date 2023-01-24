@@ -9,7 +9,7 @@ import {
 import userEvent from "@testing-library/user-event";
 import { context, createResponseComposition } from "msw";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { ProducerList } from "@/ui/features/producers/components";
+import { ProducerList } from "@/ui/pages/producers/components";
 
 /**
  * This method was necessary because the structure of

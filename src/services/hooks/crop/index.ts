@@ -1,1 +1,1 @@
-export * from "./useGetCropsQuery";
+export * from "./use-get-crops-query";
