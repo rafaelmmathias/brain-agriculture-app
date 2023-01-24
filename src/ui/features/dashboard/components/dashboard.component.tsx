@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { SyncOutlined } from "@ant-design/icons";
 import { Button, Card, Col, Divider, Row, Space, Spin, Statistic } from "antd";
-import { PieChart } from "@/components";
+import { PieChart } from "@/ui/components";
 import { useGetDashboardQuery } from "@/services/hooks";
 import { ErrorBoundary } from "./dashboard.error";
 

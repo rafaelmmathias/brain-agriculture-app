@@ -11,7 +11,7 @@ import {
   Row,
   Select,
 } from "antd";
-import { SelectState } from "@/components";
+import { SelectState } from "@/ui/components";
 import { Producer } from "@/models/producer";
 import { useGetCropsQuery } from "@/services/hooks";
 

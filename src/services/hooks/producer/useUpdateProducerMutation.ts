@@ -1,27 +1,11 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { request, gql } from "graphql-request";
-import { API_BASE_URL_GRAPH_QL } from "@/config";
+import { useQueryClient } from "@tanstack/react-query";
 import { Producer } from "@/models/producer";
+import { updateProducer } from "@/services/api";
+import { useMutationBase } from "@/services/core/use-mutation-base";
 
-const endpoint = API_BASE_URL_GRAPH_QL;
-const updateProducer = async (producer: Producer) => {
-  const data = await request<Producer>(
-    endpoint,
-    gql`
-      mutation UpdateProducer($producer: Producer!) {
-        updateProducer(producer: $producer) {
-          name
-        }
-      }
-    `,
-    { producer }
-  );
-
-  return data;
-};
 export const useUpdateProducerMutation = () => {
   const queryClient = useQueryClient();
-  return useMutation<Producer, Error, Producer>(updateProducer, {
+  return useMutationBase<Producer, Producer>(updateProducer, {
     onSuccess: (data) => {
       const currentData = queryClient.getQueryData<Producer[]>(["producers"]);
       if (currentData) {

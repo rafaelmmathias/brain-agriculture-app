@@ -1,6 +1,7 @@
 import { Producer } from "@/models/producer";
 import { gqlRequest } from "../gql-client";
 import { createProducerMutation, deleteProducerMutation } from "./mutations";
+import { updateProducerMutation } from "./mutations/update-producer";
 import { getProducerQuery, getProducersQuery } from "./queries";
 
 export type ProducerParams = {
@@ -20,4 +21,9 @@ export const getProducers = () => gqlRequest<Producer[]>(getProducersQuery);
 export const deleteProducer = (params: ProducerParams) =>
   gqlRequest<Producer[], ProducerParams>(deleteProducerMutation, {
     id: params.id,
+  });
+
+export const updateProducer = (producer: Producer) =>
+  gqlRequest<Producer, { producer: Producer }>(updateProducerMutation, {
+    producer,
   });
